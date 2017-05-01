@@ -1,0 +1,15 @@
+// Read from input fields
+        // Use trim to eliminate leading or trailing white space
+        String imageURLString = mImageUri.toString();
+        String itemIdString = mItemIdEditText.getText().toString().trim();
+        //Trims the visible commas of the price
+        String itemCostString = NumberTextWatcherForThousand.trimCommaOfString(mItemCostEditText.getText().toString()).trim();
+
+        // Check if this is supposed to be a new pet
+        // and check if all the fields in the editor are blank
+        if (TextUtils.isEmpty(itemCostString) && TextUtils.isEmpty(imageURLString) &&
+                TextUtils.isEmpty(itemIdString) && mCategory == getString(R.string.category_unknown)) {
+            // Since no fields were modified, we can return early without creating a new pet.
+            // No need to create ContentValues and no need to do any ContentProvider operations.
+            return;
+        }
